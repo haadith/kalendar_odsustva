@@ -1,5 +1,8 @@
 export const formatDate = (date: Date): string => {
-  return date.toISOString().split('T')[0];
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
 };
 
 export const parseDate = (dateStr: string): Date => {
@@ -26,7 +29,7 @@ export const getMonthDays = (year: number, month: number): Date[] => {
   const days: Date[] = [];
 
   // Get the Monday of the week containing the first day
-  let startDate = new Date(firstDay);
+  const startDate = new Date(firstDay);
   const dayOfWeek = firstDay.getDay();
   const daysToSubtract = dayOfWeek === 0 ? 6 : dayOfWeek - 1; // Monday = 0
   startDate.setDate(firstDay.getDate() - daysToSubtract);
