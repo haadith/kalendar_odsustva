@@ -1,0 +1,33 @@
+import { CalendarData } from '../types';
+
+export const defaultData: CalendarData = {
+  employees: [
+    { id: '1', name: 'Marko Petrović' },
+    { id: '2', name: 'Ana Jovanović' },
+    { id: '3', name: 'Stefan Nikolić' },
+    { id: '4', name: 'Milica Stojanović' },
+    { id: '5', name: 'Aleksandar Miletić' }
+  ],
+  eventTypes: [
+    { id: '1', name: 'Odmor', color: '#10B981', icon: 'Sun' },
+    { id: '2', name: 'Slobodan dan', color: '#3B82F6', icon: 'Coffee' },
+    { id: '3', name: 'Dežurstvo', color: '#EF4444', icon: 'Shield' },
+    { id: '4', name: 'Bolovanje', color: '#F59E0B', icon: 'Heart' }
+  ],
+  events: [
+    {
+      id: '1',
+      employeeId: '1',
+      eventTypeId: '1',
+      startDate: '2025-01-15',
+      endDate: '2025-01-17'
+    },
+    {
+      id: '2',
+      employeeId: '2',
+      eventTypeId: '3',
+      startDate: '2025-01-20',
+      endDate: '2025-01-20'
+    }
+  ]
+};
