@@ -2,30 +2,33 @@ import { useState, useEffect } from 'react';
 import { CalendarData } from '../types';
 import { defaultData } from '../data/defaultData';
 
-const STORAGE_KEY = 'calendar-data';
+const API_URL = '/api/calendar';
 
 export const useCalendarData = () => {
   const [data, setData] = useState<CalendarData>(defaultData);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Load data from localStorage
-    const savedData = localStorage.getItem(STORAGE_KEY);
-    if (savedData) {
-      try {
-        const parsedData = JSON.parse(savedData);
-        setData(parsedData);
-      } catch (error) {
-        console.error('Error parsing saved data:', error);
+    fetch(API_URL)
+      .then(res => {
+        if (!res.ok) throw new Error('Failed to load');
+        return res.json();
+      })
+      .then(json => setData(json))
+      .catch(err => {
+        console.error('Error loading data:', err);
         setData(defaultData);
-      }
-    }
-    setLoading(false);
+      })
+      .finally(() => setLoading(false));
   }, []);
 
   const saveData = (newData: CalendarData) => {
     setData(newData);
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(newData));
+    fetch(API_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(newData)
+    }).catch(err => console.error('Error saving data:', err));
   };
 
   const addEmployee = (name: string) => {
