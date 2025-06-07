@@ -86,7 +86,7 @@ export const EventModal: React.FC<EventModalProps> = ({
 
   if (!isOpen) return null;
 
-  const selectedDateStr = selectedDate ? selectedDate.toLocaleDateString('sr-RS', { 
+  const selectedDateStr = selectedDate ? selectedDate.toLocaleDateString('sr-Latn-RS', { 
     weekday: 'long', 
     year: 'numeric', 
     month: 'long', 
@@ -135,8 +135,8 @@ export const EventModal: React.FC<EventModalProps> = ({
                           <div className="text-sm text-gray-600">{eventType.name}</div>
                           <div className="text-xs text-gray-500">
                             {event.startDate === event.endDate 
-                              ? parseDate(event.startDate).toLocaleDateString('sr-RS')
-                              : `${parseDate(event.startDate).toLocaleDateString('sr-RS')} - ${parseDate(event.endDate).toLocaleDateString('sr-RS')}`
+                              ? parseDate(event.startDate).toLocaleDateString('sr-Latn-RS')
+                              : `${parseDate(event.startDate).toLocaleDateString('sr-Latn-RS')} - ${parseDate(event.endDate).toLocaleDateString('sr-Latn-RS')}`
                             }
                           </div>
                         </div>

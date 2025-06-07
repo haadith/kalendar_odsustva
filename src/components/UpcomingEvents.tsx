@@ -28,16 +28,16 @@ export const UpcomingEvents: React.FC<UpcomingEventsProps> = ({ data, selectedEm
     const end = new Date(endDate + 'T00:00:00');
     
     if (startDate === endDate) {
-      return start.toLocaleDateString('sr-RS', { 
+      return start.toLocaleDateString('sr-Latn-RS', { 
         day: 'numeric', 
         month: 'short' 
       });
     }
     
-    return `${start.toLocaleDateString('sr-RS', { 
+    return `${start.toLocaleDateString('sr-Latn-RS', { 
       day: 'numeric', 
       month: 'short' 
-    })} - ${end.toLocaleDateString('sr-RS', { 
+    })} - ${end.toLocaleDateString('sr-Latn-RS', { 
       day: 'numeric', 
       month: 'short' 
     })}`;
