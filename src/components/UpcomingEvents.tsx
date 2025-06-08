@@ -1,6 +1,6 @@
 import React from 'react';
 import { CalendarDays } from 'lucide-react';
-import { getUpcomingEvents } from '../utils/dateUtils';
+import { getUpcomingEvents, formatDateSr } from '../utils/dateUtils';
 import { CalendarData } from '../types';
 import * as Icons from 'lucide-react';
 
@@ -26,21 +26,12 @@ export const UpcomingEvents: React.FC<UpcomingEventsProps> = ({ data, selectedEm
   const formatDateRange = (startDate: string, endDate: string) => {
     const start = new Date(startDate + 'T00:00:00');
     const end = new Date(endDate + 'T00:00:00');
-    
+
     if (startDate === endDate) {
-      return start.toLocaleDateString('sr-Latn-RS', { 
-        day: 'numeric', 
-        month: 'short' 
-      });
+      return formatDateSr(start);
     }
-    
-    return `${start.toLocaleDateString('sr-Latn-RS', { 
-      day: 'numeric', 
-      month: 'short' 
-    })} - ${end.toLocaleDateString('sr-Latn-RS', { 
-      day: 'numeric', 
-      month: 'short' 
-    })}`;
+
+    return `${formatDateSr(start)} - ${formatDateSr(end)}`;
   };
 
   return (

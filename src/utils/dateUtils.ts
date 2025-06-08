@@ -9,6 +9,17 @@ export const parseDate = (dateStr: string): Date => {
   return new Date(`${dateStr}T00:00:00Z`);
 };
 
+export const formatDateSr = (date: Date): string => {
+  return date
+    .toLocaleDateString('sr-Latn-RS', {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit'
+    })
+    .replace(/\s/g, '')
+    .replace(/\.$/, '');
+};
+
 export const isToday = (date: Date): boolean => {
   const today = new Date();
   return date.toDateString() === today.toDateString();

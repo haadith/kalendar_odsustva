@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { X, Calendar, User, Tag, Edit, Trash2, Plus } from 'lucide-react';
 import { CalendarData, Event } from '../types';
-import { formatDate, parseDate } from '../utils/dateUtils';
+import { formatDate, parseDate, formatDateSr } from '../utils/dateUtils';
 
 interface EventModalProps {
   isOpen: boolean;
@@ -86,12 +86,7 @@ export const EventModal: React.FC<EventModalProps> = ({
 
   if (!isOpen) return null;
 
-  const selectedDateStr = selectedDate ? selectedDate.toLocaleDateString('sr-Latn-RS', { 
-    weekday: 'long', 
-    year: 'numeric', 
-    month: 'long', 
-    day: 'numeric' 
-  }) : '';
+  const selectedDateStr = selectedDate ? formatDateSr(selectedDate) : '';
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
@@ -134,9 +129,9 @@ export const EventModal: React.FC<EventModalProps> = ({
                           <div className="font-medium">{employee.name}</div>
                           <div className="text-sm text-gray-600">{eventType.name}</div>
                           <div className="text-xs text-gray-500">
-                            {event.startDate === event.endDate 
-                              ? parseDate(event.startDate).toLocaleDateString('sr-Latn-RS')
-                              : `${parseDate(event.startDate).toLocaleDateString('sr-Latn-RS')} - ${parseDate(event.endDate).toLocaleDateString('sr-Latn-RS')}`
+                            {event.startDate === event.endDate
+                              ? formatDateSr(parseDate(event.startDate))
+                              : `${formatDateSr(parseDate(event.startDate))} - ${formatDateSr(parseDate(event.endDate))}`
                             }
                           </div>
                         </div>
